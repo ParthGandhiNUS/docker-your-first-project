@@ -29,13 +29,28 @@ docker build [OPTIONS] PATH | URL | -
 https://docs.docker.com/engine/reference/commandline/build/
 
 docker build .
+--> this builds the image using the root path of ou project
 
 docker build -f [dockerfile] .
+--> Good option to use if we have a different docker file for each environment, like QA, staging, or production
+--> Enables us to test our application using any configuration, which is helpful for troubleshooting any errors 
+which occur in specific environments
 
 docker build --force-rm=true .
-
+--> Removes an intermediate container which is made 
+--> When we create a new image or temporary container for each instruction in our docker file such as run, copy, etc
+--> Once the command is run in the intermediate container, that container is saved as a new image layer
+--> the force rm option removes any intermediate containers that exist, even if the build is unsuccessful
+  
 docker build --rm=true .
+--> You can use the "rm=true" option in case of an unsuccessful build, those intermediate containers will not be removed
+--> Allows us to debug the last intermediate container or committing it as an intermediate image.
 
 docker build --no-cache .
+--> All previously build image layers are cached and can be reused, but if your installation depends on external resources, 
+the docker cache can cause issues --> thats where the no-cache option comes in
+--> Can use this option to tell docker to skip the cache and rebuild the entire image, 
+--> May take a long time depending on the complexity of the project 
 
 docker build --help
+--> To view more options
