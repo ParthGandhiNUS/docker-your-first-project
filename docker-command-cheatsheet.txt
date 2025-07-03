@@ -75,24 +75,34 @@ docker image pull --help
 docker image ls [OPTIONS] [REPOSITORY[:TAG]]
 
 docker image ls --all
+--> To view all images
 
 docker image ls --no-trunc
+--> Ensures that the output is not truncated
 
 docker image ls --quiet
+--> Will only return the image ids and will suppress all other columns
 
 docker image ls --digests
+-->
 
 docker image ls --filter reference=python*
+--> Similar to filter options
 
 docker image ls --filter before=python
+--> To get images which were obtained before the python image within all the images you have
 
 docker image ls --filter since=python
+--> After your python image
 
 docker image ls --filter dangling=true
+--> Isolate dangling images like intermediate images
 
 docker image ls --filter label=python*
+--> filter based on the image label
 
 docker image ls --format "table {{.ID}}\t{{.Repository}}\t{{.Tag}}\t{{.Size}}\t{{.CreatedSince}}\t{{.CreatedAt}}\t{{.Digest}}"
+--> Like the format option discussed
 
 docker image ls --help
 
